@@ -20,6 +20,8 @@ class GFG {
 }
 
 // } Driver Code Ends
+
+
 class Solution {
     public int pairWithMaxSum(int[] arr) {
         int n = arr.length;
@@ -38,4 +40,3 @@ class Solution {
         return maxSum;
     }
 }
-
