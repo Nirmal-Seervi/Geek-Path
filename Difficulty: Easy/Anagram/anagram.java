@@ -11,45 +11,47 @@ class GFG {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int t = Integer.parseInt(br.readLine());
         while (t-- > 0) {
-            String str = br.readLine();
-            String s1 = str.split(" ")[0];
-            String s2 = str.split(" ")[1];
+            String s1 = br.readLine(); // first string
+            String s2 = br.readLine(); // second string
 
             Solution obj = new Solution();
 
-            if (obj.isAnagram(s1, s2)) {
-                System.out.println("YES");
+            if (obj.areAnagrams(s1, s2)) {
+                System.out.println("true");
             } else {
-                System.out.println("NO");
+                System.out.println("false");
             }
+            System.out.println("~");
         }
     }
 }
 // } Driver Code Ends
 
 
+
+
 class Solution {
     // Function is to check whether two strings are anagram of each other or not.
-    public static boolean isAnagram(String a, String b) {
+    public static boolean areAnagrams(String s1, String s2) {
 
         // Your code here
-        int n = a.length();
-        int m = b.length();
-        
-        if(n != m) return false;
-        
-        char[] charArray = a.toCharArray();
-        Arrays.sort(charArray);
-        String sortedStr = new String(charArray);
-        
-        char[] charArray1 = b.toCharArray();
-        Arrays.sort(charArray1);
-        String sortedStr1 = new String(charArray1);
-        
-        if(sortedStr.equals(sortedStr1)){
-             return true;
+        if (s1.length() != s2.length()){
+            return false;
         }
         
-        return false;
+        int []count = new int [26];
+        
+        for(int i = 0; i < s1.length(); i++){
+            count[s1.charAt(i) - 'a']++;
+            count[s2.charAt(i) - 'a']--;
+        }
+        
+        for(int ch : count){
+            if(ch != 0){
+                return false;
+            }
+        }
+        return true;
+        
     }
 }
